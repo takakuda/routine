@@ -1,19 +1,24 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
 
 func main() {
-	num := []int{1, 2, 3, 4, 5, 6}
-	for _, i := range num {
-		switch i {
+	rand.Seed(time.Now().UnixNano())
+
+	for i := 1; i <= 6; i++ {
+		switch rand.Intn(10) {
 		case 6:
-			fmt.Println("大吉")
+			fmt.Printf("大吉%d\n", i)
 		case 5, 4:
-			fmt.Println("中吉")
+			fmt.Printf("中吉%d\n", i)
 		case 3, 2:
-			fmt.Println("吉")
+			fmt.Printf("吉%d\n", i)
 		case 1:
-			fmt.Println("凶")
+			fmt.Printf("凶%d\n", i)
 		}
 	}
 }
