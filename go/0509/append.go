@@ -11,6 +11,9 @@ func main() {
 
   // evaluated but not used
   // append(s, 5)
+  a := []int{4, 5, 6}
+  t := append(s, a...)
+  fmt.Println(t)
 }
 
 
