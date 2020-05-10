@@ -28,4 +28,7 @@ func main() {
 	c, ok = b[4]
 	fmt.Println(c)
 	fmt.Println(ok)
+
+	delete(b, 1)
+	fmt.Println(b)
 }
