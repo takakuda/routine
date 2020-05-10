@@ -19,4 +19,13 @@ func main() {
 	fmt.Println(s)
 	s = a[9]
 	fmt.Println(s)
+
+	b := map[int]string{1: "D", 2: "E"}
+	c, ok := b[1]
+	fmt.Println(c)
+	fmt.Println(ok)
+
+	c, ok = b[4]
+	fmt.Println(c)
+	fmt.Println(ok)
 }
