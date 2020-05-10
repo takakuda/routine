@@ -13,4 +13,10 @@ func main() {
 
 	n := map[int]string{1: "Taka", 2: "Kuda"}
 	fmt.Println(n)
+
+	a := map[int]string{1: "A", 2: "B", 3: "C"}
+	s := a[1]
+	fmt.Println(s)
+	s = a[9]
+	fmt.Println(s)
 }
