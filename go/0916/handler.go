@@ -10,7 +10,9 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
 		w.WriteHeader(http.StatusOK)
-		fmt.Fprintf(w, "GET hello!\n")
+
+		name := r.URL.Query().Get("name")
+		fmt.Fprintf(w, "GET hello %s!\n", name)
 	case http.MethodPost:
 		w.WriteHeader(http.StatusCreated)
 		fmt.Fprintf(w, "POST hello!\n")
