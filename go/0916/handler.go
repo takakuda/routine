@@ -7,7 +7,14 @@ import (
 )
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "hello!\n")
+	switch r.Method {
+	case http.MethodGet:
+		fmt.Fprintf(w, "GET hello!\n")
+	case http.MethodPost:
+		fmt.Fprintf(w, "POST hello!\n")
+	default:
+		fmt.Fprintf(w, "Method not allowed.\n")
+	}
 }
 
 func main() {
