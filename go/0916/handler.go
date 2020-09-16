@@ -1,10 +1,18 @@
 package main
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 )
+
+type helloJSON struct {
+	UserName string `json:"user_name"`
+	Content  string `json:"content"`
+}
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
@@ -14,8 +22,17 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 		name := r.URL.Query().Get("name")
 		fmt.Fprintf(w, "GET hello %s!\n", name)
 	case http.MethodPost:
+		body := r.Body
+		defer body.Close()
+
+		buf := new(bytes.Buffer)
+		io.Copy(buf, body)
+
+		var hello helloJSON
+		json.Unmarshal(buf.Bytes(), &hello)
+
 		w.WriteHeader(http.StatusCreated)
-		fmt.Fprintf(w, "POST hello!\n")
+		fmt.Fprintf(w, "POST hello %v!\n", hello)
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		fmt.Fprintf(w, "Method not allowed.\n")
